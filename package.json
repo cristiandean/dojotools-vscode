@@ -1,0 +1,85 @@
+{
+	"name": "dojotools",
+	"displayName": "DojoTools",
+	"description": "DojoTools is an amazing set of tools for your dojo!",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.31.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.cristiandean.enableDojoTools",
+		"onCommand:extension.cristiandean.enableWatcher",
+		"onCommand:extension.cristiandean.enableTimer"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.cristiandean.enableDojoTools",
+				"title": "Enable All",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.disableDojoTools",
+				"title": "Disable All",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.enableWatcher",
+				"title": "Enable Watcher",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.enableTimer",
+				"title": "Enable Timer",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.disableWatcher",
+				"title": "Disable Watcher",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.disableTimer",
+				"title": "Disable Timer",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.timerAction",
+				"title": "Timer Action",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.timerReset",
+				"title": "Timer Reset",
+				"category": "Dojo Tools"
+			},
+			{
+				"command": "extension.cristiandean.setTimer",
+				"title": "Set Timer",
+				"category": "Dojo Tools"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "yarn run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"@types/mocha": "^2.2.42",
+		"@types/node": "^10.12.21",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28"
+	},
+	"dependencies": {
+		"moment": "^2.24.0",
+		"moment-duration-format": "^2.2.2"
+	}
+}
