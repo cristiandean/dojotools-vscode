@@ -1,6 +1,6 @@
-# dojotools README
+# Dojo Tools
 
-It is a set of tools to be used in coding dojos.
+It's a vscode extension which contains a set of tools to be used in coding dojos.
 
 ## Features
 
