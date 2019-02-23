@@ -1,8 +1,10 @@
 {
 	"name": "dojotools",
 	"displayName": "DojoTools",
+	"publisher": "cristiandean",
 	"description": "DojoTools is an amazing set of tools for your dojo!",
 	"version": "0.0.1",
+	"repository": "https://github.com/cristiandean/dojotools-vscode",
 	"engines": {
 		"vscode": "^1.31.0"
 	},
