@@ -49,9 +49,9 @@ export class DojoTimerExtension {
 
 	private _createTimer(): Timer {
 		const timer = new Timer(this._configTimerSeconds)
-		timer.onTimeChanged(this._onTimeChanged);
-		timer.onTimerEnd(this._onTimeEnd);
-		timer.onTimerChanged(this._onTimerChanged);
+		timer.onTimeChanged((args)=>this._onTimeChanged(args));
+		timer.onTimerEnd(()=>this._onTimeEnd());
+		timer.onTimerChanged((args)=>this._onTimerChanged(args));
 		return timer;
 	}
 
