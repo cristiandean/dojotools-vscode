@@ -49,9 +49,9 @@ export class DojoTimerExtension {
 
 	private _createTimer(): Timer {
 		const timer = new Timer(this._configTimerSeconds)
-		timer.onTimeChanged((args)=>this._onTimeChanged(args));
-		timer.onTimerEnd(()=>this._onTimeEnd());
-		timer.onTimerChanged((args)=>this._onTimerChanged(args));
+		timer.onTimeChanged((args) => this._onTimeChanged(args));
+		timer.onTimerEnd(() => this._onTimeEnd());
+		timer.onTimerChanged((args) => this._onTimerChanged(args));
 		return timer;
 	}
 
@@ -95,14 +95,15 @@ export class DojoTimerExtension {
 		return timer <= 0 ? undefined : seconds
 	}
 
+	activate() {
+		this._statusBarItem.show();
+	}
+
 	deactivate() {
 		this.timer.reset();
 		this._statusBarItem.hide();
 	}
 
-	activate() {
-		this._statusBarItem.show();
-	}
 
 }
 

@@ -1,8 +1,7 @@
-import * as vscode from 'vscode';
-import * as path from 'path';
 import { exec } from 'child_process';
-import { parseCommandWithParams, setCustomColors, createStatusBarItem } from './util';
-import { Config, Keys, TestStatus, Messages, Commands, Colors } from './consts'
+import * as vscode from 'vscode';
+import { Colors, Commands, Config, Keys, Messages, TestStatus } from './consts';
+import { createStatusBarItem, getDarker, parseCommandWithParams, setCustomColors } from './util';
 
 interface CMD {
 	match?: string;
@@ -38,11 +37,12 @@ export class DojoWatcherExtension {
 	}
 
 	public runCommands(document: vscode.TextDocument) {
-		if (!this.isEnabled || this.commands.length === 0) {
+		if (!this.isEnabled || this.commands.length === 0 || document.fileName.split('/').slice(-1)[0] == "settings.json") {
 			return;
 		}
 
 		this._outputChannel.show(true)
+		this._outputChannel.dispose
 
 		const match = (pattern: string) => pattern && pattern.length > 0 && new RegExp(pattern).test(document.fileName);
 		const commandConfigs = this.commands.filter(cfg => {
@@ -94,7 +94,7 @@ export class DojoWatcherExtension {
 			'statusBar.background': status,
 			'statusBar.noFolderBackground': status,
 			'statusBar.debuggingBackground': status,
-			'activityBar.background': status,
+			'activityBar.background': getDarker(status),
 		})
 	}
 
@@ -123,6 +123,17 @@ export class DojoWatcherExtension {
 
 	public loadConfig = (): void => {
 		this._config = <DojoWatcherConfig><any>vscode.workspace.getConfiguration(Config.PROJECT_SECTION);
+	}
+
+	public activate() {
+		this.isEnabled = true;
+		this._statusBarItem.show()
+	}
+
+	public deactivate() {
+		this.isEnabled = false;
+		this._statusBarItem.hide()
+		vscode.workspace.getConfiguration('workbench').update('colorCustomizations', {});
 	}
 
 }

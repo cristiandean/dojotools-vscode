@@ -68,6 +68,9 @@ export enum Colors {
 	White = '#FFFFFF',
 	Yellow = '#fffc98',
 	Green = '#a2ffa9',
+	DarkGreen = '#014400',
+	DarkRed = '#5d0000',
+	DarkBlue = '#003163',
 	Red = '#5d0000'
 }
 

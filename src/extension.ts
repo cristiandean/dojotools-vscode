@@ -12,8 +12,8 @@ export function activate(context: vscode.ExtensionContext) {
 	/** Dojo Watcher */
 	context.subscriptions.push(vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => dojoWatcher.configReload(e)));
 	context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((document: vscode.TextDocument) => dojoWatcher.runCommands(document)));
-	context.subscriptions.push(vscode.commands.registerCommand(Commands.CMD_ENABLE_WATCHER, () => { dojoWatcher.isEnabled = true; }));
-	context.subscriptions.push(vscode.commands.registerCommand(Commands.CMD_DISABLE_WATCHER, () => { dojoWatcher.isEnabled = false; deactivate() }));
+	context.subscriptions.push(vscode.commands.registerCommand(Commands.CMD_ENABLE_WATCHER, () => { dojoWatcher.activate(); }));
+	context.subscriptions.push(vscode.commands.registerCommand(Commands.CMD_DISABLE_WATCHER, () => { dojoWatcher.deactivate(); }));
 	/** Dojo Timer */
 
 	context.subscriptions.push(vscode.commands.registerCommand(Commands.CMD_DISABLE_TIMER, () => dojoTimer.deactivate()));
@@ -23,7 +23,6 @@ export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.commands.registerCommand(Commands.CMD_TIMER_START, () => dojoTimer.cmdStartTimer()));
 
 	/** Both */
-
 	context.subscriptions.push(vscode.commands.registerCommand(Commands.CMD_ENABLE_EXTENSION, () => {
 		vscode.commands.executeCommand(Commands.CMD_ENABLE_WATCHER)
 		vscode.commands.executeCommand(Commands.CMD_ENABLE_TIMER)
@@ -37,5 +36,5 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export function deactivate() {
-	vscode.workspace.getConfiguration('workbench').update('colorCustomizations', {});
+
 }

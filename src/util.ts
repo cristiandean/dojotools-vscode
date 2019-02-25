@@ -43,6 +43,18 @@ export function createStatusBarItem(cmd: string, text?: string, tooltip?: string
 	statusBarItem.tooltip = tooltip || '';
 	statusBarItem.command = cmd;
 	statusBarItem.text = text || '';
-	statusBarItem.show();
 	return statusBarItem
 }
+
+export function getDarker(color: consts.TestStatus): string {
+	switch (color) {
+		case consts.TestStatus.Processing:
+			return consts.Colors.DarkBlue;
+		case consts.TestStatus.Failed:
+			return consts.Colors.DarkRed;
+		case consts.TestStatus.Success:
+			return consts.Colors.DarkGreen;
+	}
+	return color;
+}
+
